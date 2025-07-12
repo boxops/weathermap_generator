@@ -193,11 +193,11 @@ class WeatherMapApp:
 
 
 if __name__ == "__main__":
-    file = "weather.json"
+    file = "src/weather.json"
     latitude = "52.3886"
     longitude = "-2.2497"
     fresh_data = False
-    debug = True
+    debug = False
 
     weather_map = WeatherMapApp(file, latitude, longitude, fresh_data, debug)
     weather_map.create_interactive_heatmap()
