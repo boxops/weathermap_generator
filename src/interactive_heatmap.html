@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_75164113bbfb61c949692a98e67a92f7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    <h3 align='center'>West Midlands: Temperature Heatmap + City Data</h3>
+    
+            <div class="folium-map" id="map_75164113bbfb61c949692a98e67a92f7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_75164113bbfb61c949692a98e67a92f7 = L.map(
+                "map_75164113bbfb61c949692a98e67a92f7",
+                {
+                    center: [52.4862, -1.8904],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f281fbda11db28ae60e2327d69735905 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f281fbda11db28ae60e2327d69735905.addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+            var heat_map_9be7fe6d9f065524fb7662841d90d149 = L.heatLayer(
+                [[52.3882, -2.25, 20.560000000000002], [52.35, -2.2667, 20.720000000000027], [52.3754, -2.3172, 20.55000000000001], [52.3611, -2.1593, 23.220000000000027], [52.4189, -2.3459, 20.510000000000048], [52.45, -2.3167, 19.920000000000016], [52.451, -2.3149, 22.310000000000002], [52.45, -2.1667, 23.640000000000043], [52.35, -2.3667, 19.890000000000043], [52.4262, -2.1282, 23.590000000000032], [52.4161, -2.3902, 22.850000000000023], [52.4668, -2.3333, 22.28000000000003], [52.4571, -2.3543, 20.090000000000032], [52.4561, -2.1432, 23.5], [52.4641, -2.1502, 23.510000000000048], [52.4487, -2.3825, 20.060000000000002], [52.4481, -2.3856, 23.180000000000007], [52.4197, -2.4146, 20.02000000000004], [52.4667, -2.1167, 23.27000000000004], [52.4667, -2.3833, 20.200000000000045], [52.4976, -2.1689, 23.090000000000032], [52.4817, -2.1214, 22.810000000000002], [52.3357, -2.0598, 23.200000000000045], [52.4721, -2.0821, 25.220000000000027], [52.4486, -2.0494, 23.189999999999998], [52.2667, -2.15, 21.870000000000005], [52.5, -2.1167, 24.850000000000023], [52.4833, -2.0833, 22.860000000000014], [52.3785, -2.482, 20.02000000000004], [52.5318, -2.3061, 25.140000000000043], [52.5, -2.0833, 22.620000000000005], [52.359, -2.0072, 22.450000000000045], [52.3613, -2.0052, 24.29000000000002], [52.5379, -2.3065, 20.370000000000005], [52.2632, -2.395, 20.960000000000036], [52.4829, -2.0438, 22.30000000000001], [52.4353, -1.9971, 24.58000000000004], [52.23, -2.1966, 21.379999999999995], [52.3517, -1.9653, 22.879999999999995], [52.5296, -2.0677, 22.660000000000025], [52.5, -2.0167, 22.610000000000014], [52.5366, -2.4203, 20.340000000000032], [52.5448, -2.0855, 22.52000000000004], [52.5, -2.0, 24.629999999999995], [52.1961, -2.2089, 23.680000000000007], [52.1894, -2.22, 21.560000000000002], [52.497, -1.9731, 22.49000000000001], [52.5891, -2.2654, 20.05000000000001], [52.5333, -2.0167, 22.680000000000007], [52.5187, -1.9945, 22.660000000000025]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 18,
+  "radius": 25,
+  "blur": 15,
+  "gradient": {
+  0.2: "blue",
+  0.5: "lime",
+  0.8: "red",
+},
+}
+            );
+        
+    
+            heat_map_9be7fe6d9f065524fb7662841d90d149.addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+            var circle_marker_293c191f855f944305367cfc8d40ee71 = L.circleMarker(
+                [52.3882, -2.25],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_0b174308c0a742fd57e9261449913396 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d1fafc223f3d4a3ce70d286ea5e0ae6 = $(`<div id="html_6d1fafc223f3d4a3ce70d286ea5e0ae6" style="width: 100.0%; height: 100.0%;">             <b>Kidderminster</b><br>             Temp: 20.6°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_0b174308c0a742fd57e9261449913396.setContent(html_6d1fafc223f3d4a3ce70d286ea5e0ae6);
+            
+        
+
+        circle_marker_293c191f855f944305367cfc8d40ee71.bindPopup(popup_0b174308c0a742fd57e9261449913396)
+        ;
+
+        
+    
+    
+            circle_marker_293c191f855f944305367cfc8d40ee71.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ec681a39633c2492fe3df9c795c0c56 = L.circleMarker(
+                [52.35, -2.2667],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_df1be4f58eb1bd46fd8ad826131db9e9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db21a8257bad853932b627b61ccaafab = $(`<div id="html_db21a8257bad853932b627b61ccaafab" style="width: 100.0%; height: 100.0%;">             <b>Stourport-on-Severn</b><br>             Temp: 20.7°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_df1be4f58eb1bd46fd8ad826131db9e9.setContent(html_db21a8257bad853932b627b61ccaafab);
+            
+        
+
+        circle_marker_1ec681a39633c2492fe3df9c795c0c56.bindPopup(popup_df1be4f58eb1bd46fd8ad826131db9e9)
+        ;
+
+        
+    
+    
+            circle_marker_1ec681a39633c2492fe3df9c795c0c56.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_23eb1d915305662e616bd576cf1e356b = L.circleMarker(
+                [52.3754, -2.3172],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_85ddd36ad3275f62b010c0d6acc12908 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d4deeffb591acb8e624669c98c478ced = $(`<div id="html_d4deeffb591acb8e624669c98c478ced" style="width: 100.0%; height: 100.0%;">             <b>Bewdley</b><br>             Temp: 20.6°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_85ddd36ad3275f62b010c0d6acc12908.setContent(html_d4deeffb591acb8e624669c98c478ced);
+            
+        
+
+        circle_marker_23eb1d915305662e616bd576cf1e356b.bindPopup(popup_85ddd36ad3275f62b010c0d6acc12908)
+        ;
+
+        
+    
+    
+            circle_marker_23eb1d915305662e616bd576cf1e356b.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_18eebd348d553243f3e4c3299bc6ce92 = L.circleMarker(
+                [52.3611, -2.1593],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_30a58ba3e0635aa6e11ad8ae7241baf8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a4bc2b9411e05a498d2d196059475a6a = $(`<div id="html_a4bc2b9411e05a498d2d196059475a6a" style="width: 100.0%; height: 100.0%;">             <b>Chaddesley Corbett</b><br>             Temp: 23.2°C<br>             Humidity: 58%<br>             Weather: Clear sky             </div>`)[0];
+                popup_30a58ba3e0635aa6e11ad8ae7241baf8.setContent(html_a4bc2b9411e05a498d2d196059475a6a);
+            
+        
+
+        circle_marker_18eebd348d553243f3e4c3299bc6ce92.bindPopup(popup_30a58ba3e0635aa6e11ad8ae7241baf8)
+        ;
+
+        
+    
+    
+            circle_marker_18eebd348d553243f3e4c3299bc6ce92.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ce0bad73e5a7e9d8e7e7399862ad661 = L.circleMarker(
+                [52.4189, -2.3459],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_83d5143bcfcc45af5fbb9624a335ce1f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_73027408a8229c2594b60c7e9cac6f25 = $(`<div id="html_73027408a8229c2594b60c7e9cac6f25" style="width: 100.0%; height: 100.0%;">             <b>Upper Arley</b><br>             Temp: 20.5°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_83d5143bcfcc45af5fbb9624a335ce1f.setContent(html_73027408a8229c2594b60c7e9cac6f25);
+            
+        
+
+        circle_marker_3ce0bad73e5a7e9d8e7e7399862ad661.bindPopup(popup_83d5143bcfcc45af5fbb9624a335ce1f)
+        ;
+
+        
+    
+    
+            circle_marker_3ce0bad73e5a7e9d8e7e7399862ad661.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d31fd51013af414a8c18270996e5a60e = L.circleMarker(
+                [52.45, -2.3167],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_132ed775eacc3ad069b478029218bbaf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_19cfbf75f2b6eccc59d3b131c42a8d2b = $(`<div id="html_19cfbf75f2b6eccc59d3b131c42a8d2b" style="width: 100.0%; height: 100.0%;">             <b>Romsley</b><br>             Temp: 19.9°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_132ed775eacc3ad069b478029218bbaf.setContent(html_19cfbf75f2b6eccc59d3b131c42a8d2b);
+            
+        
+
+        circle_marker_d31fd51013af414a8c18270996e5a60e.bindPopup(popup_132ed775eacc3ad069b478029218bbaf)
+        ;
+
+        
+    
+    
+            circle_marker_d31fd51013af414a8c18270996e5a60e.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_919c971592e60cd9f8466b0de10cde95 = L.circleMarker(
+                [52.451, -2.3149],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_2ce0431617c718d95b053133fe845dce = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b68ee923e35468a7b16fa7187643f2e4 = $(`<div id="html_b68ee923e35468a7b16fa7187643f2e4" style="width: 100.0%; height: 100.0%;">             <b>Romsley</b><br>             Temp: 22.3°C<br>             Humidity: 36%<br>             Weather: Clear sky             </div>`)[0];
+                popup_2ce0431617c718d95b053133fe845dce.setContent(html_b68ee923e35468a7b16fa7187643f2e4);
+            
+        
+
+        circle_marker_919c971592e60cd9f8466b0de10cde95.bindPopup(popup_2ce0431617c718d95b053133fe845dce)
+        ;
+
+        
+    
+    
+            circle_marker_919c971592e60cd9f8466b0de10cde95.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1053c9fb65d5221c4277bf465a1f833 = L.circleMarker(
+                [52.45, -2.1667],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_a7a6c796198bdaeebbad9750dcb47217 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_06ba708dd22d1be49fdc505bf30d2841 = $(`<div id="html_06ba708dd22d1be49fdc505bf30d2841" style="width: 100.0%; height: 100.0%;">             <b>Wollaston</b><br>             Temp: 23.6°C<br>             Humidity: 54%<br>             Weather: Clear sky             </div>`)[0];
+                popup_a7a6c796198bdaeebbad9750dcb47217.setContent(html_06ba708dd22d1be49fdc505bf30d2841);
+            
+        
+
+        circle_marker_e1053c9fb65d5221c4277bf465a1f833.bindPopup(popup_a7a6c796198bdaeebbad9750dcb47217)
+        ;
+
+        
+    
+    
+            circle_marker_e1053c9fb65d5221c4277bf465a1f833.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d83dbb1b9735d2025bf1c6377e490ed3 = L.circleMarker(
+                [52.35, -2.3667],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_fcac2fff5506d5d02b3e9f3beaaf71cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b2efe2a338923675ea32f7c7eb779ffa = $(`<div id="html_b2efe2a338923675ea32f7c7eb779ffa" style="width: 100.0%; height: 100.0%;">             <b>Wyre Forest District</b><br>             Temp: 19.9°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_fcac2fff5506d5d02b3e9f3beaaf71cf.setContent(html_b2efe2a338923675ea32f7c7eb779ffa);
+            
+        
+
+        circle_marker_d83dbb1b9735d2025bf1c6377e490ed3.bindPopup(popup_fcac2fff5506d5d02b3e9f3beaaf71cf)
+        ;
+
+        
+    
+    
+            circle_marker_d83dbb1b9735d2025bf1c6377e490ed3.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30ea4eb1af969f979e4cdcca33f63e5e = L.circleMarker(
+                [52.4262, -2.1282],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_135672cae1820d08550c83b51d3d9975 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f86566dc861035af5db8621dec3a899b = $(`<div id="html_f86566dc861035af5db8621dec3a899b" style="width: 100.0%; height: 100.0%;">             <b>Hagley</b><br>             Temp: 23.6°C<br>             Humidity: 53%<br>             Weather: Clear sky             </div>`)[0];
+                popup_135672cae1820d08550c83b51d3d9975.setContent(html_f86566dc861035af5db8621dec3a899b);
+            
+        
+
+        circle_marker_30ea4eb1af969f979e4cdcca33f63e5e.bindPopup(popup_135672cae1820d08550c83b51d3d9975)
+        ;
+
+        
+    
+    
+            circle_marker_30ea4eb1af969f979e4cdcca33f63e5e.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0a713d1ecc65ef0c5848cc0c13131d15 = L.circleMarker(
+                [52.4161, -2.3902],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_ae0d063fb0061a8d32ae345db15292f8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1360a9d0942813ce9eea0ad21b3c07b4 = $(`<div id="html_1360a9d0942813ce9eea0ad21b3c07b4" style="width: 100.0%; height: 100.0%;">             <b>Kinlet</b><br>             Temp: 22.9°C<br>             Humidity: 39%<br>             Weather: Clear sky             </div>`)[0];
+                popup_ae0d063fb0061a8d32ae345db15292f8.setContent(html_1360a9d0942813ce9eea0ad21b3c07b4);
+            
+        
+
+        circle_marker_0a713d1ecc65ef0c5848cc0c13131d15.bindPopup(popup_ae0d063fb0061a8d32ae345db15292f8)
+        ;
+
+        
+    
+    
+            circle_marker_0a713d1ecc65ef0c5848cc0c13131d15.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8ee69938dca4342bb23075207ceded7d = L.circleMarker(
+                [52.4668, -2.3333],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_c6c1ba11637b2f2286275bc2b19eeeb5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e0d244f96d20a490a7ac70e6966e5841 = $(`<div id="html_e0d244f96d20a490a7ac70e6966e5841" style="width: 100.0%; height: 100.0%;">             <b>Alveley</b><br>             Temp: 22.3°C<br>             Humidity: 32%<br>             Weather: Clear sky             </div>`)[0];
+                popup_c6c1ba11637b2f2286275bc2b19eeeb5.setContent(html_e0d244f96d20a490a7ac70e6966e5841);
+            
+        
+
+        circle_marker_8ee69938dca4342bb23075207ceded7d.bindPopup(popup_c6c1ba11637b2f2286275bc2b19eeeb5)
+        ;
+
+        
+    
+    
+            circle_marker_8ee69938dca4342bb23075207ceded7d.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34128fefeeae2fd05596da667dd6c680 = L.circleMarker(
+                [52.4571, -2.3543],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_c2a52d5cfc004db6a5488996e477a5e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bad7efe1c5a806e41f2707c08259dcfb = $(`<div id="html_bad7efe1c5a806e41f2707c08259dcfb" style="width: 100.0%; height: 100.0%;">             <b>Alveley</b><br>             Temp: 20.1°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_c2a52d5cfc004db6a5488996e477a5e5.setContent(html_bad7efe1c5a806e41f2707c08259dcfb);
+            
+        
+
+        circle_marker_34128fefeeae2fd05596da667dd6c680.bindPopup(popup_c2a52d5cfc004db6a5488996e477a5e5)
+        ;
+
+        
+    
+    
+            circle_marker_34128fefeeae2fd05596da667dd6c680.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36f89354d18f8b19330682b717822c2c = L.circleMarker(
+                [52.4561, -2.1432],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_7c8cc28dfb64ba377c6cc084053202c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6ff848b8ac5e3f64d9c6eb9628c39515 = $(`<div id="html_6ff848b8ac5e3f64d9c6eb9628c39515" style="width: 100.0%; height: 100.0%;">             <b>Stourbridge</b><br>             Temp: 23.5°C<br>             Humidity: 53%<br>             Weather: Clear sky             </div>`)[0];
+                popup_7c8cc28dfb64ba377c6cc084053202c6.setContent(html_6ff848b8ac5e3f64d9c6eb9628c39515);
+            
+        
+
+        circle_marker_36f89354d18f8b19330682b717822c2c.bindPopup(popup_7c8cc28dfb64ba377c6cc084053202c6)
+        ;
+
+        
+    
+    
+            circle_marker_36f89354d18f8b19330682b717822c2c.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a969ac19348a3eef5fc1b922f230d2cc = L.circleMarker(
+                [52.4641, -2.1502],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_1cf3f438a9163c3f5f2d4b74a9a75f40 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_846ae3b6ad5f65d92e87d17beed16133 = $(`<div id="html_846ae3b6ad5f65d92e87d17beed16133" style="width: 100.0%; height: 100.0%;">             <b>Amblecote</b><br>             Temp: 23.5°C<br>             Humidity: 53%<br>             Weather: Clear sky             </div>`)[0];
+                popup_1cf3f438a9163c3f5f2d4b74a9a75f40.setContent(html_846ae3b6ad5f65d92e87d17beed16133);
+            
+        
+
+        circle_marker_a969ac19348a3eef5fc1b922f230d2cc.bindPopup(popup_1cf3f438a9163c3f5f2d4b74a9a75f40)
+        ;
+
+        
+    
+    
+            circle_marker_a969ac19348a3eef5fc1b922f230d2cc.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f6859791508eaca752ad261c6cf04f05 = L.circleMarker(
+                [52.4487, -2.3825],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_4c0ad10a17dd3d72cb277d6234e6f8f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8d0182937b889bc6a022f6d1abde64df = $(`<div id="html_8d0182937b889bc6a022f6d1abde64df" style="width: 100.0%; height: 100.0%;">             <b>Highley</b><br>             Temp: 20.1°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_4c0ad10a17dd3d72cb277d6234e6f8f4.setContent(html_8d0182937b889bc6a022f6d1abde64df);
+            
+        
+
+        circle_marker_f6859791508eaca752ad261c6cf04f05.bindPopup(popup_4c0ad10a17dd3d72cb277d6234e6f8f4)
+        ;
+
+        
+    
+    
+            circle_marker_f6859791508eaca752ad261c6cf04f05.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf0953a775d4aa597d44474efd23b1f4 = L.circleMarker(
+                [52.4481, -2.3856],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_cc9423f3ada0164114b0118fb1e6889b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cbaf474047c2fa97becedccb1bc56ea5 = $(`<div id="html_cbaf474047c2fa97becedccb1bc56ea5" style="width: 100.0%; height: 100.0%;">             <b>Highley</b><br>             Temp: 23.2°C<br>             Humidity: 40%<br>             Weather: Clear sky             </div>`)[0];
+                popup_cc9423f3ada0164114b0118fb1e6889b.setContent(html_cbaf474047c2fa97becedccb1bc56ea5);
+            
+        
+
+        circle_marker_bf0953a775d4aa597d44474efd23b1f4.bindPopup(popup_cc9423f3ada0164114b0118fb1e6889b)
+        ;
+
+        
+    
+    
+            circle_marker_bf0953a775d4aa597d44474efd23b1f4.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3e49109dfca88aee0e2fab5d24a819a0 = L.circleMarker(
+                [52.4197, -2.4146],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_df169f4e06771c2b12e97d08d5918f08 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5a4dd9603dc4a8528fd48c78f44971dd = $(`<div id="html_5a4dd9603dc4a8528fd48c78f44971dd" style="width: 100.0%; height: 100.0%;">             <b>Kinlet</b><br>             Temp: 20.0°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_df169f4e06771c2b12e97d08d5918f08.setContent(html_5a4dd9603dc4a8528fd48c78f44971dd);
+            
+        
+
+        circle_marker_3e49109dfca88aee0e2fab5d24a819a0.bindPopup(popup_df169f4e06771c2b12e97d08d5918f08)
+        ;
+
+        
+    
+    
+            circle_marker_3e49109dfca88aee0e2fab5d24a819a0.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1096e92677bb06ecf7b8eac0ccbc6d67 = L.circleMarker(
+                [52.4667, -2.1167],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_5107017b3913cbbf323b8d53080c0172 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b24cfbf4e196185bebac2846ac5a57ee = $(`<div id="html_b24cfbf4e196185bebac2846ac5a57ee" style="width: 100.0%; height: 100.0%;">             <b>Delph</b><br>             Temp: 23.3°C<br>             Humidity: 53%<br>             Weather: Clear sky             </div>`)[0];
+                popup_5107017b3913cbbf323b8d53080c0172.setContent(html_b24cfbf4e196185bebac2846ac5a57ee);
+            
+        
+
+        circle_marker_1096e92677bb06ecf7b8eac0ccbc6d67.bindPopup(popup_5107017b3913cbbf323b8d53080c0172)
+        ;
+
+        
+    
+    
+            circle_marker_1096e92677bb06ecf7b8eac0ccbc6d67.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e9e674704eaacb1e8746618cb158f67 = L.circleMarker(
+                [52.4667, -2.3833],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_38ba02ee90aabe6bcbabdfb7714806d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6c42303810e99c83569146439e1984af = $(`<div id="html_6c42303810e99c83569146439e1984af" style="width: 100.0%; height: 100.0%;">             <b>Hampton</b><br>             Temp: 20.2°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_38ba02ee90aabe6bcbabdfb7714806d6.setContent(html_6c42303810e99c83569146439e1984af);
+            
+        
+
+        circle_marker_9e9e674704eaacb1e8746618cb158f67.bindPopup(popup_38ba02ee90aabe6bcbabdfb7714806d6)
+        ;
+
+        
+    
+    
+            circle_marker_9e9e674704eaacb1e8746618cb158f67.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_17397b3ab7c710cf0e7ecfd344692e7d = L.circleMarker(
+                [52.4976, -2.1689],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_fa0c18ffa1e040d1f4834aafddada7ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_03bc29e29e0fb94070eebb8a15fa05c1 = $(`<div id="html_03bc29e29e0fb94070eebb8a15fa05c1" style="width: 100.0%; height: 100.0%;">             <b>Kingswinford</b><br>             Temp: 23.1°C<br>             Humidity: 55%<br>             Weather: Clear sky             </div>`)[0];
+                popup_fa0c18ffa1e040d1f4834aafddada7ac.setContent(html_03bc29e29e0fb94070eebb8a15fa05c1);
+            
+        
+
+        circle_marker_17397b3ab7c710cf0e7ecfd344692e7d.bindPopup(popup_fa0c18ffa1e040d1f4834aafddada7ac)
+        ;
+
+        
+    
+    
+            circle_marker_17397b3ab7c710cf0e7ecfd344692e7d.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4cc041d0a507f3d8d7b1236d319f63e5 = L.circleMarker(
+                [52.4817, -2.1214],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_00fd2635d449eefa08faeb1f18bd4c4a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7aee87ce41eaef1d7c34019a4ab14c25 = $(`<div id="html_7aee87ce41eaef1d7c34019a4ab14c25" style="width: 100.0%; height: 100.0%;">             <b>Brierley Hill</b><br>             Temp: 22.8°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_00fd2635d449eefa08faeb1f18bd4c4a.setContent(html_7aee87ce41eaef1d7c34019a4ab14c25);
+            
+        
+
+        circle_marker_4cc041d0a507f3d8d7b1236d319f63e5.bindPopup(popup_00fd2635d449eefa08faeb1f18bd4c4a)
+        ;
+
+        
+    
+    
+            circle_marker_4cc041d0a507f3d8d7b1236d319f63e5.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bf1dba679eabece6931d65fb33444a23 = L.circleMarker(
+                [52.3357, -2.0598],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_4f8d027e1f73683458194a70b927b0c4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a6dca902af086d3017a4e1821d3aa868 = $(`<div id="html_a6dca902af086d3017a4e1821d3aa868" style="width: 100.0%; height: 100.0%;">             <b>Bromsgrove</b><br>             Temp: 23.2°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_4f8d027e1f73683458194a70b927b0c4.setContent(html_a6dca902af086d3017a4e1821d3aa868);
+            
+        
+
+        circle_marker_bf1dba679eabece6931d65fb33444a23.bindPopup(popup_4f8d027e1f73683458194a70b927b0c4)
+        ;
+
+        
+    
+    
+            circle_marker_bf1dba679eabece6931d65fb33444a23.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ea3077b4da91030e4e28b8e2065e04b = L.circleMarker(
+                [52.4721, -2.0821],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_423c7626b93c90ca3c02baf710592b77 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6a987922eb63b5722fd4f46c5805bbff = $(`<div id="html_6a987922eb63b5722fd4f46c5805bbff" style="width: 100.0%; height: 100.0%;">             <b>Cradley Heath</b><br>             Temp: 25.2°C<br>             Humidity: 52%<br>             Weather: Clear sky             </div>`)[0];
+                popup_423c7626b93c90ca3c02baf710592b77.setContent(html_6a987922eb63b5722fd4f46c5805bbff);
+            
+        
+
+        circle_marker_5ea3077b4da91030e4e28b8e2065e04b.bindPopup(popup_423c7626b93c90ca3c02baf710592b77)
+        ;
+
+        
+    
+    
+            circle_marker_5ea3077b4da91030e4e28b8e2065e04b.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_45f7edde26113c55d77876eec715e2db = L.circleMarker(
+                [52.4486, -2.0494],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_70985770e1124e5c9771f84924301f6d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_36152726f151fbfc83b7dde270140a7a = $(`<div id="html_36152726f151fbfc83b7dde270140a7a" style="width: 100.0%; height: 100.0%;">             <b>Halesowen</b><br>             Temp: 23.2°C<br>             Humidity: 55%<br>             Weather: Clear sky             </div>`)[0];
+                popup_70985770e1124e5c9771f84924301f6d.setContent(html_36152726f151fbfc83b7dde270140a7a);
+            
+        
+
+        circle_marker_45f7edde26113c55d77876eec715e2db.bindPopup(popup_70985770e1124e5c9771f84924301f6d)
+        ;
+
+        
+    
+    
+            circle_marker_45f7edde26113c55d77876eec715e2db.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d9e7006fa3fcb808ff5532b48a4a404 = L.circleMarker(
+                [52.2667, -2.15],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_8bd5b304e8ab8b6829812c8a1518010e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_698734a1ea5b3aca5ad73e88248ba753 = $(`<div id="html_698734a1ea5b3aca5ad73e88248ba753" style="width: 100.0%; height: 100.0%;">             <b>Droitwich</b><br>             Temp: 21.9°C<br>             Humidity: 54%<br>             Weather: Clear sky             </div>`)[0];
+                popup_8bd5b304e8ab8b6829812c8a1518010e.setContent(html_698734a1ea5b3aca5ad73e88248ba753);
+            
+        
+
+        circle_marker_6d9e7006fa3fcb808ff5532b48a4a404.bindPopup(popup_8bd5b304e8ab8b6829812c8a1518010e)
+        ;
+
+        
+    
+    
+            circle_marker_6d9e7006fa3fcb808ff5532b48a4a404.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_385989888083a72b80cceae105b73c27 = L.circleMarker(
+                [52.5, -2.1167],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_c0db8b7a8945347940a70a5e83cf38e4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0da22003e79a6e782fde81a66a41601d = $(`<div id="html_0da22003e79a6e782fde81a66a41601d" style="width: 100.0%; height: 100.0%;">             <b>Dudley</b><br>             Temp: 24.9°C<br>             Humidity: 52%<br>             Weather: Clear sky             </div>`)[0];
+                popup_c0db8b7a8945347940a70a5e83cf38e4.setContent(html_0da22003e79a6e782fde81a66a41601d);
+            
+        
+
+        circle_marker_385989888083a72b80cceae105b73c27.bindPopup(popup_c0db8b7a8945347940a70a5e83cf38e4)
+        ;
+
+        
+    
+    
+            circle_marker_385989888083a72b80cceae105b73c27.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30287107b0dac51ba6cc66cfe123a03a = L.circleMarker(
+                [52.4833, -2.0833],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_8849aed59bcb824741d9f16ad0506c0b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_63b0af0f36334a8d0a0b11e541eb5d32 = $(`<div id="html_63b0af0f36334a8d0a0b11e541eb5d32" style="width: 100.0%; height: 100.0%;">             <b>Netherton</b><br>             Temp: 22.9°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_8849aed59bcb824741d9f16ad0506c0b.setContent(html_63b0af0f36334a8d0a0b11e541eb5d32);
+            
+        
+
+        circle_marker_30287107b0dac51ba6cc66cfe123a03a.bindPopup(popup_8849aed59bcb824741d9f16ad0506c0b)
+        ;
+
+        
+    
+    
+            circle_marker_30287107b0dac51ba6cc66cfe123a03a.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed8dc28ed77063a4d025d13af9576904 = L.circleMarker(
+                [52.3785, -2.482],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_9cbda3acc328fbddb21338a8704ea2d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bd549a3869411fac05261f0461055476 = $(`<div id="html_bd549a3869411fac05261f0461055476" style="width: 100.0%; height: 100.0%;">             <b>Cleobury Mortimer</b><br>             Temp: 20.0°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_9cbda3acc328fbddb21338a8704ea2d9.setContent(html_bd549a3869411fac05261f0461055476);
+            
+        
+
+        circle_marker_ed8dc28ed77063a4d025d13af9576904.bindPopup(popup_9cbda3acc328fbddb21338a8704ea2d9)
+        ;
+
+        
+    
+    
+            circle_marker_ed8dc28ed77063a4d025d13af9576904.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e94c4e3b56207b8371590d1b5b153ed5 = L.circleMarker(
+                [52.5318, -2.3061],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_9aaa44bfa620e0aef827d4c238272487 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b4a5ed480467946d5f0929dfcac6915f = $(`<div id="html_b4a5ed480467946d5f0929dfcac6915f" style="width: 100.0%; height: 100.0%;">             <b>Claverley</b><br>             Temp: 25.1°C<br>             Humidity: 52%<br>             Weather: Clear sky             </div>`)[0];
+                popup_9aaa44bfa620e0aef827d4c238272487.setContent(html_b4a5ed480467946d5f0929dfcac6915f);
+            
+        
+
+        circle_marker_e94c4e3b56207b8371590d1b5b153ed5.bindPopup(popup_9aaa44bfa620e0aef827d4c238272487)
+        ;
+
+        
+    
+    
+            circle_marker_e94c4e3b56207b8371590d1b5b153ed5.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5a2be090043e7f0a88f6c466f29ef1da = L.circleMarker(
+                [52.5, -2.0833],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_b3eb976f939a02483b31dea02ffa0fc1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3f730157c5ca8ed4f69ffb59d1c1ed89 = $(`<div id="html_3f730157c5ca8ed4f69ffb59d1c1ed89" style="width: 100.0%; height: 100.0%;">             <b>Dudley</b><br>             Temp: 22.6°C<br>             Humidity: 58%<br>             Weather: Clear sky             </div>`)[0];
+                popup_b3eb976f939a02483b31dea02ffa0fc1.setContent(html_3f730157c5ca8ed4f69ffb59d1c1ed89);
+            
+        
+
+        circle_marker_5a2be090043e7f0a88f6c466f29ef1da.bindPopup(popup_b3eb976f939a02483b31dea02ffa0fc1)
+        ;
+
+        
+    
+    
+            circle_marker_5a2be090043e7f0a88f6c466f29ef1da.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_055681715b1486ff6f761168078215d8 = L.circleMarker(
+                [52.359, -2.0072],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_95d709a09dcf771bebaa7fafd7b9beec = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9091e6c826077f01cbd42295eda30577 = $(`<div id="html_9091e6c826077f01cbd42295eda30577" style="width: 100.0%; height: 100.0%;">             <b>Barnt Green</b><br>             Temp: 22.5°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_95d709a09dcf771bebaa7fafd7b9beec.setContent(html_9091e6c826077f01cbd42295eda30577);
+            
+        
+
+        circle_marker_055681715b1486ff6f761168078215d8.bindPopup(popup_95d709a09dcf771bebaa7fafd7b9beec)
+        ;
+
+        
+    
+    
+            circle_marker_055681715b1486ff6f761168078215d8.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1858fe688f7b308e0f1de6276a36f7c = L.circleMarker(
+                [52.3613, -2.0052],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_edcc5d6b11ac8ed5792cb393d85b1c05 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a813e45bb2d3908040435b638f2d9410 = $(`<div id="html_a813e45bb2d3908040435b638f2d9410" style="width: 100.0%; height: 100.0%;">             <b>Bromsgrove District</b><br>             Temp: 24.3°C<br>             Humidity: 52%<br>             Weather: Clear sky             </div>`)[0];
+                popup_edcc5d6b11ac8ed5792cb393d85b1c05.setContent(html_a813e45bb2d3908040435b638f2d9410);
+            
+        
+
+        circle_marker_e1858fe688f7b308e0f1de6276a36f7c.bindPopup(popup_edcc5d6b11ac8ed5792cb393d85b1c05)
+        ;
+
+        
+    
+    
+            circle_marker_e1858fe688f7b308e0f1de6276a36f7c.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3d75d43c4b1f9e54470d6bd6c8b03350 = L.circleMarker(
+                [52.5379, -2.3065],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_6abda99882f65462585865047af2c23a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bc76037a65753d4f67b325d8c4555a96 = $(`<div id="html_bc76037a65753d4f67b325d8c4555a96" style="width: 100.0%; height: 100.0%;">             <b>Claverley</b><br>             Temp: 20.4°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_6abda99882f65462585865047af2c23a.setContent(html_bc76037a65753d4f67b325d8c4555a96);
+            
+        
+
+        circle_marker_3d75d43c4b1f9e54470d6bd6c8b03350.bindPopup(popup_6abda99882f65462585865047af2c23a)
+        ;
+
+        
+    
+    
+            circle_marker_3d75d43c4b1f9e54470d6bd6c8b03350.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_50b939b290b66376359af9ad76b86f7c = L.circleMarker(
+                [52.2632, -2.395],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_b80a2dc140e85f9df02c8a4460306ee8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b8cecb26c0579c4c1d88c120d20f8a63 = $(`<div id="html_b8cecb26c0579c4c1d88c120d20f8a63" style="width: 100.0%; height: 100.0%;">             <b>Shelsley Beauchamp</b><br>             Temp: 21.0°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_b80a2dc140e85f9df02c8a4460306ee8.setContent(html_b8cecb26c0579c4c1d88c120d20f8a63);
+            
+        
+
+        circle_marker_50b939b290b66376359af9ad76b86f7c.bindPopup(popup_b80a2dc140e85f9df02c8a4460306ee8)
+        ;
+
+        
+    
+    
+            circle_marker_50b939b290b66376359af9ad76b86f7c.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fa9ca3b663d92f9f976c450d4f2a3717 = L.circleMarker(
+                [52.4829, -2.0438],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_f63d845ccd7f77ef3c7f8b7f67ee4688 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_616d2503f48c6594c1a1d6995c6c2f4d = $(`<div id="html_616d2503f48c6594c1a1d6995c6c2f4d" style="width: 100.0%; height: 100.0%;">             <b>Rowley Regis</b><br>             Temp: 22.3°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_f63d845ccd7f77ef3c7f8b7f67ee4688.setContent(html_616d2503f48c6594c1a1d6995c6c2f4d);
+            
+        
+
+        circle_marker_fa9ca3b663d92f9f976c450d4f2a3717.bindPopup(popup_f63d845ccd7f77ef3c7f8b7f67ee4688)
+        ;
+
+        
+    
+    
+            circle_marker_fa9ca3b663d92f9f976c450d4f2a3717.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b80c481f353fc6016f0940ea734101ad = L.circleMarker(
+                [52.4353, -1.9971],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_8aec1583a1077de856a021a5738d3f34 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1fad2ac2173cda04259e2a210a1d9e76 = $(`<div id="html_1fad2ac2173cda04259e2a210a1d9e76" style="width: 100.0%; height: 100.0%;">             <b>Bartley Green</b><br>             Temp: 24.6°C<br>             Humidity: 51%<br>             Weather: Clear sky             </div>`)[0];
+                popup_8aec1583a1077de856a021a5738d3f34.setContent(html_1fad2ac2173cda04259e2a210a1d9e76);
+            
+        
+
+        circle_marker_b80c481f353fc6016f0940ea734101ad.bindPopup(popup_8aec1583a1077de856a021a5738d3f34)
+        ;
+
+        
+    
+    
+            circle_marker_b80c481f353fc6016f0940ea734101ad.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_894dd5323ef80fe9a625fa9ebd865775 = L.circleMarker(
+                [52.23, -2.1966],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_a7845ef090ef4f7936d61424e9c350b8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b40fcc89107294900d425a098baf90fe = $(`<div id="html_b40fcc89107294900d425a098baf90fe" style="width: 100.0%; height: 100.0%;">             <b>Fernhill Heath</b><br>             Temp: 21.4°C<br>             Humidity: 66%<br>             Weather: Clear sky             </div>`)[0];
+                popup_a7845ef090ef4f7936d61424e9c350b8.setContent(html_b40fcc89107294900d425a098baf90fe);
+            
+        
+
+        circle_marker_894dd5323ef80fe9a625fa9ebd865775.bindPopup(popup_a7845ef090ef4f7936d61424e9c350b8)
+        ;
+
+        
+    
+    
+            circle_marker_894dd5323ef80fe9a625fa9ebd865775.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89ca2c8eeae518e741a349bd6dc24626 = L.circleMarker(
+                [52.3517, -1.9653],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_a936422c679b86c40c14747d0ebda270 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee0211e3a6b4638919b3981a4b4e0622 = $(`<div id="html_ee0211e3a6b4638919b3981a4b4e0622" style="width: 100.0%; height: 100.0%;">             <b>Alvechurch</b><br>             Temp: 22.9°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_a936422c679b86c40c14747d0ebda270.setContent(html_ee0211e3a6b4638919b3981a4b4e0622);
+            
+        
+
+        circle_marker_89ca2c8eeae518e741a349bd6dc24626.bindPopup(popup_a936422c679b86c40c14747d0ebda270)
+        ;
+
+        
+    
+    
+            circle_marker_89ca2c8eeae518e741a349bd6dc24626.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed9540b3f8c84624205d71e1ebf0ca5a = L.circleMarker(
+                [52.5296, -2.0677],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_a9d9382133d776c470b4cdaa870c0936 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f7c6d3b4d0066407942bbf30af693669 = $(`<div id="html_f7c6d3b4d0066407942bbf30af693669" style="width: 100.0%; height: 100.0%;">             <b>Tipton</b><br>             Temp: 22.7°C<br>             Humidity: 59%<br>             Weather: Clear sky             </div>`)[0];
+                popup_a9d9382133d776c470b4cdaa870c0936.setContent(html_f7c6d3b4d0066407942bbf30af693669);
+            
+        
+
+        circle_marker_ed9540b3f8c84624205d71e1ebf0ca5a.bindPopup(popup_a9d9382133d776c470b4cdaa870c0936)
+        ;
+
+        
+    
+    
+            circle_marker_ed9540b3f8c84624205d71e1ebf0ca5a.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ed4390eb6e3508a44f8469cc798f499 = L.circleMarker(
+                [52.5, -2.0167],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_59732539aac01606150330085356b973 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aff44cf4c71286c7f4bfd40c5a13fa12 = $(`<div id="html_aff44cf4c71286c7f4bfd40c5a13fa12" style="width: 100.0%; height: 100.0%;">             <b>Oldbury</b><br>             Temp: 22.6°C<br>             Humidity: 58%<br>             Weather: Clear sky             </div>`)[0];
+                popup_59732539aac01606150330085356b973.setContent(html_aff44cf4c71286c7f4bfd40c5a13fa12);
+            
+        
+
+        circle_marker_3ed4390eb6e3508a44f8469cc798f499.bindPopup(popup_59732539aac01606150330085356b973)
+        ;
+
+        
+    
+    
+            circle_marker_3ed4390eb6e3508a44f8469cc798f499.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b173e7f06af6988ffeb4edd5d415e430 = L.circleMarker(
+                [52.5366, -2.4203],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_86d720b66f5842f3f600e72287e88623 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_da3c929c0c805c3614759633b4f3cba6 = $(`<div id="html_da3c929c0c805c3614759633b4f3cba6" style="width: 100.0%; height: 100.0%;">             <b>Bridgnorth</b><br>             Temp: 20.3°C<br>             Humidity: 41%<br>             Weather: Clear sky             </div>`)[0];
+                popup_86d720b66f5842f3f600e72287e88623.setContent(html_da3c929c0c805c3614759633b4f3cba6);
+            
+        
+
+        circle_marker_b173e7f06af6988ffeb4edd5d415e430.bindPopup(popup_86d720b66f5842f3f600e72287e88623)
+        ;
+
+        
+    
+    
+            circle_marker_b173e7f06af6988ffeb4edd5d415e430.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_60e08e1817a56ce05dcf7e7d9825940d = L.circleMarker(
+                [52.5448, -2.0855],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_5007854ed951b3352a67800d4f93f59b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fda5a7612d66ef3737fb63a6f2a48c0f = $(`<div id="html_fda5a7612d66ef3737fb63a6f2a48c0f" style="width: 100.0%; height: 100.0%;">             <b>Coseley</b><br>             Temp: 22.5°C<br>             Humidity: 62%<br>             Weather: Clear sky             </div>`)[0];
+                popup_5007854ed951b3352a67800d4f93f59b.setContent(html_fda5a7612d66ef3737fb63a6f2a48c0f);
+            
+        
+
+        circle_marker_60e08e1817a56ce05dcf7e7d9825940d.bindPopup(popup_5007854ed951b3352a67800d4f93f59b)
+        ;
+
+        
+    
+    
+            circle_marker_60e08e1817a56ce05dcf7e7d9825940d.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_18ff134356a7b8d1577adeabcb6bfc41 = L.circleMarker(
+                [52.5, -2.0],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_4923a9f08b898d57cab1222e0961701d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb3dfcc93c7bddb3689138a510ccb02b = $(`<div id="html_cb3dfcc93c7bddb3689138a510ccb02b" style="width: 100.0%; height: 100.0%;">             <b>Sandwell</b><br>             Temp: 24.6°C<br>             Humidity: 52%<br>             Weather: Clear sky             </div>`)[0];
+                popup_4923a9f08b898d57cab1222e0961701d.setContent(html_cb3dfcc93c7bddb3689138a510ccb02b);
+            
+        
+
+        circle_marker_18ff134356a7b8d1577adeabcb6bfc41.bindPopup(popup_4923a9f08b898d57cab1222e0961701d)
+        ;
+
+        
+    
+    
+            circle_marker_18ff134356a7b8d1577adeabcb6bfc41.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5208333f0ca638eee5f8e4cfac180c22 = L.circleMarker(
+                [52.1961, -2.2089],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_2e12f58ef870716b4674bb76a23467c0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_25a6f8a74b88654ebb44677c2222506c = $(`<div id="html_25a6f8a74b88654ebb44677c2222506c" style="width: 100.0%; height: 100.0%;">             <b>Worcester District</b><br>             Temp: 23.7°C<br>             Humidity: 60%<br>             Weather: Clear sky             </div>`)[0];
+                popup_2e12f58ef870716b4674bb76a23467c0.setContent(html_25a6f8a74b88654ebb44677c2222506c);
+            
+        
+
+        circle_marker_5208333f0ca638eee5f8e4cfac180c22.bindPopup(popup_2e12f58ef870716b4674bb76a23467c0)
+        ;
+
+        
+    
+    
+            circle_marker_5208333f0ca638eee5f8e4cfac180c22.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_12c77b62e95fa3b3da0e806aa4261dfe = L.circleMarker(
+                [52.1894, -2.22],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_bdb398932ba067e6d066dc336d203f60 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b05c3253a5d6bb1e0bc77bcbe12a1f5c = $(`<div id="html_b05c3253a5d6bb1e0bc77bcbe12a1f5c" style="width: 100.0%; height: 100.0%;">             <b>Worcester</b><br>             Temp: 21.6°C<br>             Humidity: 66%<br>             Weather: Clear sky             </div>`)[0];
+                popup_bdb398932ba067e6d066dc336d203f60.setContent(html_b05c3253a5d6bb1e0bc77bcbe12a1f5c);
+            
+        
+
+        circle_marker_12c77b62e95fa3b3da0e806aa4261dfe.bindPopup(popup_bdb398932ba067e6d066dc336d203f60)
+        ;
+
+        
+    
+    
+            circle_marker_12c77b62e95fa3b3da0e806aa4261dfe.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_918c5e802535006c24f160491f01ca0a = L.circleMarker(
+                [52.497, -1.9731],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_be4e6ecf9b7be76eadf301fded00a4d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8d70b395baa94e55899e1319da03d26 = $(`<div id="html_c8d70b395baa94e55899e1319da03d26" style="width: 100.0%; height: 100.0%;">             <b>Smethwick</b><br>             Temp: 22.5°C<br>             Humidity: 58%<br>             Weather: Clear sky             </div>`)[0];
+                popup_be4e6ecf9b7be76eadf301fded00a4d9.setContent(html_c8d70b395baa94e55899e1319da03d26);
+            
+        
+
+        circle_marker_918c5e802535006c24f160491f01ca0a.bindPopup(popup_be4e6ecf9b7be76eadf301fded00a4d9)
+        ;
+
+        
+    
+    
+            circle_marker_918c5e802535006c24f160491f01ca0a.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc209e7a3dce206dfae08ac942508095 = L.circleMarker(
+                [52.5891, -2.2654],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_8a17f9509df251f32bba9b90c46b7dea = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_12416b7ae1bac6ceab42fe6daab0a60a = $(`<div id="html_12416b7ae1bac6ceab42fe6daab0a60a" style="width: 100.0%; height: 100.0%;">             <b>Pattingham</b><br>             Temp: 20.1°C<br>             Humidity: 57%<br>             Weather: Clear sky             </div>`)[0];
+                popup_8a17f9509df251f32bba9b90c46b7dea.setContent(html_12416b7ae1bac6ceab42fe6daab0a60a);
+            
+        
+
+        circle_marker_bc209e7a3dce206dfae08ac942508095.bindPopup(popup_8a17f9509df251f32bba9b90c46b7dea)
+        ;
+
+        
+    
+    
+            circle_marker_bc209e7a3dce206dfae08ac942508095.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34efe5a0bc7c1211c01b08e2e2c31fbf = L.circleMarker(
+                [52.5333, -2.0167],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_3051039b567ab40f0eae2112f37528cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b2623a0b1f0ab178ef788762ae4d7357 = $(`<div id="html_b2623a0b1f0ab178ef788762ae4d7357" style="width: 100.0%; height: 100.0%;">             <b>Swan Village</b><br>             Temp: 22.7°C<br>             Humidity: 59%<br>             Weather: Clear sky             </div>`)[0];
+                popup_3051039b567ab40f0eae2112f37528cf.setContent(html_b2623a0b1f0ab178ef788762ae4d7357);
+            
+        
+
+        circle_marker_34efe5a0bc7c1211c01b08e2e2c31fbf.bindPopup(popup_3051039b567ab40f0eae2112f37528cf)
+        ;
+
+        
+    
+    
+            circle_marker_34efe5a0bc7c1211c01b08e2e2c31fbf.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_916422d6f1a8a069687137a553478371 = L.circleMarker(
+                [52.5187, -1.9945],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 3}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+        
+    
+        var popup_5420f70f00753745b0463655db3b596e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8a842d0a5324c2100887abe9820ebeed = $(`<div id="html_8a842d0a5324c2100887abe9820ebeed" style="width: 100.0%; height: 100.0%;">             <b>West Bromwich</b><br>             Temp: 22.7°C<br>             Humidity: 56%<br>             Weather: Clear sky             </div>`)[0];
+                popup_5420f70f00753745b0463655db3b596e.setContent(html_8a842d0a5324c2100887abe9820ebeed);
+            
+        
+
+        circle_marker_916422d6f1a8a069687137a553478371.bindPopup(popup_5420f70f00753745b0463655db3b596e)
+        ;
+
+        
+    
+    
+            circle_marker_916422d6f1a8a069687137a553478371.bindTooltip(
+                `<div>
+                     Hover for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_072ceb278fb211e95fbe9583adb10501_layers = {
+                base_layers : {
+                    "cartodbdarkmatter" : tile_layer_f281fbda11db28ae60e2327d69735905,
+                },
+                overlays :  {
+                    "Temperature Heatmap" : heat_map_9be7fe6d9f065524fb7662841d90d149,
+                },
+            };
+            let layer_control_072ceb278fb211e95fbe9583adb10501 = L.control.layers(
+                layer_control_072ceb278fb211e95fbe9583adb10501_layers.base_layers,
+                layer_control_072ceb278fb211e95fbe9583adb10501_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_75164113bbfb61c949692a98e67a92f7);
+
+        
+</script>
+</html>

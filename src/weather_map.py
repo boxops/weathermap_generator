@@ -38,7 +38,7 @@ class WeatherDataFetcher:
             self.debug(f"Fetched data: {self.data}")
             self.save_data()
             return self.data
-        except requests.RequestException as e:
+        except Exception as e:
             raise RuntimeError(f"Failed to fetch data from OpenWeatherMap API: {e}")
 
     def save_data(self):
