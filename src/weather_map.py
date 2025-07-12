@@ -10,9 +10,15 @@ load_dotenv()
 
 
 class WeatherDataFetcher:
-    """Class to fetch weather data from OpenWeatherMap API."""
-
-    def __init__(self, file, latitude, longitude, fresh_data=False, debug=False):
+    def __init__(
+        self,
+        file,
+        latitude,
+        longitude,
+        fresh_data=False,
+        debug=False,
+        requests_lib=requests,
+    ):
         self.api_key = os.getenv("OPENWEATHERMAP_API_KEY")
         if not self.api_key:
             raise ValueError(
@@ -23,6 +29,7 @@ class WeatherDataFetcher:
         self.longitude = longitude
         self.debug_enabled = debug
         self.fresh_data = fresh_data
+        self.requests = requests_lib  # Dependency injection for testing
 
     def fetch_data(self):
         """Fetches weather data for cities in the West Midlands."""

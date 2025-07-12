@@ -5,6 +5,30 @@ from src.weather_map import WeatherDataFetcher, InteractiveHeatmap
 
 
 class TestWeatherDataFetcher:
+    def test_fetch_data_success(self, mock_weather_api, weather_data_fetcher):
+        weather_data_fetcher.fresh_data = True
+        result = weather_data_fetcher.fetch_data()
+
+        # Verify the API was called with correct URL
+        mock_weather_api.assert_called_once()
+        called_url = mock_weather_api.call_args[0][0]
+        assert "openweathermap.org" in called_url
+        assert "lat=52.4862" in called_url
+        assert "lon=-1.8904" in called_url
+
+        # Verify we got our mock data
+        assert result == mock_weather_api.return_value.json.return_value
+        assert weather_data_fetcher.data == result
+
+    def test_fetch_data_handles_errors(self, mocker, weather_data_fetcher):
+        mocker.patch("requests.get", side_effect=Exception("API Error"))
+        weather_data_fetcher.fresh_data = True
+
+        with pytest.raises(
+            RuntimeError, match="Failed to fetch data from OpenWeatherMap API"
+        ):
+            weather_data_fetcher.fetch_data()
+
     def test_init_missing_api_key(self, monkeypatch):
         monkeypatch.delenv("OPENWEATHERMAP_API_KEY", raising=False)
         with pytest.raises(ValueError, match="OpenWeatherMap API key is not set"):
