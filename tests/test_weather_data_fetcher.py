@@ -1,7 +1,7 @@
 import pytest
 import json
 from unittest.mock import patch, mock_open
-from src.weather_map import WeatherDataFetcher, InteractiveHeatmap
+from src.weather_map import WeatherDataFetcher
 
 
 class TestWeatherDataFetcher:
@@ -20,7 +20,7 @@ class TestWeatherDataFetcher:
         assert result == mock_weather_api.return_value.json.return_value
         assert weather_data_fetcher.data == result
 
-    def test_fetch_data_handles_errors(self, mocker, weather_data_fetcher):
+    def test_fetch_data_failure(self, mocker, weather_data_fetcher):
         mocker.patch("requests.get", side_effect=Exception("API Error"))
         weather_data_fetcher.fresh_data = True
 
@@ -38,7 +38,9 @@ class TestWeatherDataFetcher:
         data = weather_data_fetcher.open_data()
         assert data == sample_weather_data
 
-    def test_open_data_file_not_found(self, tmp_path):
+    def test_open_data_file_not_found(self, tmp_path, monkeypatch):
+        # Mock the API key environment variable
+        monkeypatch.setenv("OPENWEATHERMAP_API_KEY", "test_api_key")
         non_existent_file = tmp_path / "nonexistent.json"
         fetcher = WeatherDataFetcher(
             file=non_existent_file,
@@ -58,27 +60,6 @@ class TestWeatherDataFetcher:
         assert test_file.exists()
         with open(test_file) as f:
             assert json.load(f) == sample_weather_data
-
-    @patch("requests.get")
-    def test_fetch_data_success(
-        self, mock_get, weather_data_fetcher, sample_weather_data
-    ):
-        mock_get.return_value.json.return_value = sample_weather_data
-        weather_data_fetcher.fresh_data = True
-
-        result = weather_data_fetcher.fetch_data()
-        assert result == sample_weather_data
-        assert weather_data_fetcher.data == sample_weather_data
-
-    @patch("requests.get")
-    def test_fetch_data_failure(self, mock_get, weather_data_fetcher):
-        mock_get.side_effect = Exception("API Error")
-        weather_data_fetcher.fresh_data = True
-
-        with pytest.raises(
-            RuntimeError, match="Failed to fetch data from OpenWeatherMap API"
-        ):
-            weather_data_fetcher.fetch_data()
 
     def test_debug_output(self, capsys, weather_data_fetcher):
         weather_data_fetcher.debug_enabled = True

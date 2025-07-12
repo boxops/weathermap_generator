@@ -27,11 +27,11 @@ def mock_weather_api(mocker):
                 "coord": {"lat": 52.4862, "lon": -1.8904},
                 "main": {"temp": 285.15, "humidity": 75},
                 "weather": [{"description": "clear sky"}],
-                "name": "Birmingham"
+                "name": "Birmingham",
             }
         ]
     }
-    mock = mocker.patch('requests.get')
+    mock = mocker.patch("requests.get")
     mock.return_value.json.return_value = mock_response
     return mock
 
@@ -45,7 +45,9 @@ def mock_data_file(tmp_path, sample_weather_data):
 
 
 @pytest.fixture
-def weather_data_fetcher(mock_data_file):
+def weather_data_fetcher(mock_data_file, monkeypatch):
+    # Mock the API key environment variable
+    monkeypatch.setenv("OPENWEATHERMAP_API_KEY", "test_api_key")
     return WeatherDataFetcher(
         file=mock_data_file,
         latitude="52.4862",
