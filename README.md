@@ -6,6 +6,8 @@ Create beautiful, interactive weather heatmaps using real-time data from the Ope
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 
+![screenshot_example](src/screenshot_example.jpg)
+
 ## Features
 
 - 🌡️ **Real-time Weather Data**: Fetches current weather data from OpenWeatherMap API
